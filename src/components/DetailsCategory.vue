@@ -1,14 +1,14 @@
 <template>
   <div>
-    <a href="#" v-on:click.prevent="$emit('filter-by-category', category.id)" class="list-group-item">{{ category.name }}</a>
+    <a v-bind:href="'/category/'+ categoryName.id">{{ categoryName.name }}</a>
   </div>
 </template>
 
 <script>
     export default {
-        name: "Category",
+        name: "DetailsCategory",
         props: {
-            category: {
+            categoryName: {
                 type: Object,
                 required: true
             },

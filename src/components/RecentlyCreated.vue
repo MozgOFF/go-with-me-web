@@ -1,38 +1,31 @@
 <template>
-  <div>
-    <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="carousel-item active">
-          <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
-        </div>
+  <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+    <div class="card h-100">
+      <a><img class="card-img-top" v-bind:src="'http://34.90.109.115' + event.images[0].image" alt="Тут будет картинка"></a>
+      <div class="card-body">
+        <h4 class="card-title">
+          <a v-bind:href="'/details/'+ event.id">{{ event.title }}</a>
+        </h4>
+        <p class="card-text">{{ event.description }}</p>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+      <div class="card-footer">
+        <small class="text-muted">Начало: {{ event.start | formatDateFromNow }}</small>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
     export default {
-        name: "RecentlyCreated"
+        name: "RecentlyCreated",
+        props: {
+            event: {
+                type: Object,
+                required: true
+            }
+        }
     }
+
 </script>
 
 <style scoped>

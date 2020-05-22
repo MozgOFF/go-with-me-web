@@ -8,10 +8,20 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Искать ...">
+          <input
+              type="text"
+              class="form-control"
+              placeholder="Искать ..."
+              v-model="query"
+          >
           <span class="input-group-btn">
-              <button class="btn btn-secondary" type="button" v-on:click.prevent="$emit('search-by-keyword', keyword)">Найти</button>
-            </span>
+            <a v-bind:href="'/search/' + query">das</a>
+              <button
+                  class="btn btn-secondary"
+                  type="button"
+              >
+              Найти</button>
+          </span>
         </div>
         <div class="collapse navbar-collapse" id="navbarResponsive">
 
@@ -32,7 +42,19 @@
 </template>
 
 <script>
+    export default {
+        name: 'Navigation',
+        data() {
+            return {
+                query: '',
+            }
+        },
+        methods: {
+            getQuery() {
 
+            }
+        }
+    }
 </script>
 
 <style scoped>

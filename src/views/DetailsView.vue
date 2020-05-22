@@ -108,6 +108,14 @@
 
     const axios = require('axios');
 
+    let config = {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': '*',
+            'Access-Control-Allow-Headers': '*',
+        }
+    };
+
     export default {
         name: "Details",
         components: { DetailsCategory, ProfilePopup },
@@ -118,7 +126,7 @@
         },
         mounted() {
             axios.get("http://34.90.109.115/api/v1/event/detail/" + this.$route.params.id, {
-            }).then(response =>
+            }, config).then(response =>
                   (this.details = response.data),
                   (this.loadingDetails = false)
             );

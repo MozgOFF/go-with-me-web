@@ -84,6 +84,18 @@
     const axios = require('axios');
     const baseUrl = 'http://34.90.109.115';
 
+    let config = {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': '*',
+            'Access-Control-Allow-Headers': '*',
+        }
+    };
+
+    let data = {
+        'HTTP_CONTENT_LANGUAGE': self.language
+    };
+
     export default {
         name: 'MainBody',
         components: {RecentlyCreated, Poster, Loader, Categories},
@@ -97,12 +109,12 @@
         },
         mounted() {
             axios.get('http://34.90.109.115/api/v1/event/all/', {
-            }).then(response =>
+            }, config).then(response =>
                 (this.events = response),
                 (this.loadingEvents = false)
             );
             axios.get('http://34.90.109.115/api/v1/event/categories', {
-            }).then(response =>
+            }, config).then(response =>
                 (this.categories = response),
                 (this.loadingCategories = false)
             );
@@ -110,7 +122,7 @@
                 params: {
                     ordering: 'start'
                 }
-            }).then(response =>
+            }, config).then(response =>
                     (this.eventsStartSoon = response.data),
                     (this.loadingEventsStartSoon = false)
             )

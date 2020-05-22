@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import MainBody from './views/MainBody.vue'
 import Details from './views/DetailsView.vue'
+import SearchEvents from './views/SearchList.vue'
 import EventsByCategory from './views/EventsByCategoryView.vue'
 
 Vue.use(Router)
@@ -24,6 +25,12 @@ export default new Router({
             path: '/category/:categoryId',
             name: 'EventsByCategory',
             component: EventsByCategory,
+            props: true
+        },
+        {
+            path: '/search/:query',
+            name: 'SearchEvents',
+            component: SearchEvents,
             props: true
         }
     ]

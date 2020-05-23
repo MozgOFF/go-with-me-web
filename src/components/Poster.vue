@@ -6,7 +6,7 @@
           <h4 class="card-title">
             <a v-bind:href="'/details/'+ event.id" >{{ event.title }}</a>
           </h4>
-          <h5>{{ event.price }}</h5>
+          <h5>Стоимость участия: {{ event.price }}</h5>
           <p class="card-text">{{ event.description }}</p>
         </div>
         <iframe

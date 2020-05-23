@@ -11,7 +11,7 @@
           <hr>
           <p class="lead">
             <img v-bind:src="'http://34.90.109.115' + details.author.image.image" alt="Avatar" class="avatar">
-            <a href="#">{{details.author.last_name}} {{ details.author.first_name }}</a>
+            <a href="#"> {{ details.author.first_name }} {{details.author.last_name}}</a>
           </p>
           <hr>
           <img class="img-fluid rounded" v-bind:src="'http://34.90.109.115' + details.images[0].image" alt="">
@@ -36,39 +36,15 @@
                 <div class="form-group">
                   <textarea class="form-control" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Опубликовать</button>
+                <button disabled type="submit" class="btn btn-primary">Опубликовать</button>
               </form>
             </div>
           </div>
-          <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-              <h5 class="mt-0">Комментатор 1</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-          </div>
-          <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-              <h5 class="mt-0">Комментатор 2</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-              <div class="media mt-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                  <h5 class="mt-0">Комментатор 3</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </div>
-              <div class="media mt-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                  <h5 class="mt-0">Комментатор 4</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-              </div>
-            </div>
-          </div>
+        <Comment
+            v-if="comments.length > 0"
+            v-for="item in comments"
+            v-bind:comment="item"
+        />
         </div>
         <div class="col-md-4">
           <div class="card my-4 sticky-top">
@@ -91,8 +67,8 @@
           <div class="card my-4 ">
             <h5 class="card-header">Детали</h5>
             <div class="card-body">
-              <p>Стоимость участия: {{ details.price }}</p>
-              <p>Начало: {{ details.start}}</p>
+              <p>Стоимость: {{ details.price }}</p>
+              <p>Начало: {{ details.start }}</p>
               <p>Конец: {{ details.end }}</p>
             </div>
           </div>
@@ -105,6 +81,7 @@
 <script>
     import DetailsCategory from '../components/DetailsCategory.vue'
     import ProfilePopup from '../components/ProfilePopup.vue'
+    import Comment from '../components/Comments.vue'
 
     const axios = require('axios');
 
@@ -118,10 +95,11 @@
 
     export default {
         name: "Details",
-        components: { DetailsCategory, ProfilePopup },
+        components: { DetailsCategory, ProfilePopup,Comment },
         data() {
             return {
                 details: {}, loadingDetails: true,
+                comments: {},
             }
         },
         mounted() {
@@ -130,11 +108,14 @@
                   (this.details = response.data),
                   (this.loadingDetails = false)
             );
+            axios.get("http://34.90.109.115/api/v1/event/detail/" + this.$route.params.id + "/comments/", {
+            }, config).then(response =>
+                  (this.comments = response.data),
+            );
+
         }
     }
 </script>
-
-
 
 <style scoped>
   .avatar {

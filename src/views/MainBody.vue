@@ -26,7 +26,7 @@
                   </div>
                 </article>
                 <article class="card-group-item">
-                  <header class="card-header"><h6 class="title">Цена события</h6></header>
+                  <!--<header class="card-header"><h6 class="title">Цена события</h6></header>
                   <div class="filter-content">
                     <div class="card-body">
                       <div class="form-row">
@@ -40,7 +40,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div>-->
                 </article>
               </div>
             </div>

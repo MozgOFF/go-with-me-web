@@ -7,33 +7,32 @@
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="input-group">
-          <input
-              type="text"
-              class="form-control"
-              placeholder="Искать ..."
-              v-model="query"
-          >
-          <span class="input-group-btn">
-            <a v-bind:href="'/search/' + query">das</a>
-              <button
-                  class="btn btn-secondary"
-                  type="button"
-              >
-              Найти</button>
-          </span>
-        </div>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-
+          <div class="input-group">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Искать ..."
+                v-model="query"
+                required
+            >
+            <span class="input-group-btn">
+             <a v-bind:href="'/search/' + query"><button
+                class="btn btn-secondary"
+                type="submit"
+            >
+              Найти</button></a>
+            </span>
+          </div>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Домашняя
+              <a class="nav-link" href="/">Домашняя
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Профиль</a>
-            </li>
+            <!--<li class="nav-item">-->
+              <!--<a class="nav-link" href="#">Профиль</a>-->
+            <!--</li>-->
           </ul>
         </div>
       </div>
